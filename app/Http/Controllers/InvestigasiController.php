@@ -20,11 +20,11 @@ use App\Models\ProsesKesimpulanSementara;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Carbon;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Http\Requests\InvestigasiRequest;
 
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class InvestigasiController extends Controller
 {
@@ -199,8 +199,6 @@ class InvestigasiController extends Controller
             ->make(true);
             
         }
-
-        return response()->json(['data' => $data]);
     }
 
     //GET LAMPIRAN, PENDALAMAN, PROSES KESIMPULAN SMT
@@ -498,6 +496,12 @@ class InvestigasiController extends Controller
         $investigasi->kronologi_singkat=$request->kronologi_singkat;
         $investigasi->metode_investigasi=$request->metode_investigasi;
         $investigasi->agen_terlibat=$request->agen_terlibat;
+        $investigasi->nama_peserta=$request->nama_peserta;
+        $investigasi->nomor_peserta=$request->nomor_peserta;
+        $investigasi->tgl_mulai=$request->tgl_mulai;
+        $investigasi->tgl_pengajuan=$request->tgl_pengajuan;
+        $investigasi->tgl_selesai=$request->tgl_selesai;
+        $investigasi->tgl_klaim=$request->tgl_klaim;
         $investigasi->plan=$request->plan;
         $investigasi->status=0;
         $investigasi->user_id=$user_id;

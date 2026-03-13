@@ -98,27 +98,27 @@
             checkReliance();
         });
 
-        function checkReliance(){
-            var selectedText = $('#asuransi_id option:selected').text();
-            if(selectedText.includes('RELIANCE')){
-                $('#policy_information_reliance').show();
-            } else {
-                $('#policy_information_reliance').hide();
-                // Clear values if hiding
-                $('#no_polis_reliance').val('');
-                $('#nm_tertanggung_reliance').val('');
-                $('#nm_pemegang_polis_reliance').val('');
-                $('#nm_agen_reliance').val('');
-                $('#tgl_spaj_reliance').val('');
-                $('#tgl_efektif_polis_reliance').val('');
-                $('#usia_polis_reliance').val('');
-                $('#pekerjaan_reliance').val('');
-                $('#matauang_reliance').val('');
-                $('#premi_reliance').val('');
-                $('#total_premi_reliance').val('');
-                $('#uang_pertanggungan_reliance').val('');
-            }
-        }
+        function checkReliance() {
+    // Mengambil teks dari opsi asuransi yang dipilih
+    var selectedText = $('#asuransi_id option:selected').text();
+    
+    // Jika teks mengandung kata 'RELIANCE'
+    if (selectedText.includes('RELIANCE')) {
+        $('#policy_information_reliance').show();
+    } else {
+        // Sembunyikan container utama
+        $('#policy_information_reliance').hide();
+        
+        // Menghapus nilai (Reset) berdasarkan ID yang ada di HTML Anda
+        $('#nama_peserta').val('');
+        $('#nomor_peserta').val('');
+        $('#tgl_mulai').val('');
+        $('#tgl_pengajuan').val('');
+        $('#tgl_selesai').val('');
+        $('#tgl_klaim').val('');
+        
+    }
+}
 
 
         $('#tgl_meninggal').change(function(){   
@@ -215,7 +215,17 @@
             }      
         });
 
+        $('#asuransi_id').on('change', function() {
+    var selectedValue = $(this).val();
+    var selectedText = $('#asuransi_id option:selected').text();
 
+    // Pastikan ID selector sesuai dengan ID yang ditambahkan di label
+    if (selectedValue === '37' || selectedText.includes('RELIANCE')) {
+        $('#label_pemegang_polis').text('Nama Pemegang Polis / Koperasi');
+    } else {
+        $('#label_pemegang_polis').text('Nama Pemegang Polis');
+    }
+});
     </script>
     <script src="{{ asset('js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
     <script src="{{ asset('js/pages/be_forms_validation.min.js')}}"></script>
@@ -321,8 +331,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Nama Pemegang Polis</label>
-                            <div class="col-sm-8">
+<label class="col-sm-4 col-form-label" id="label_pemegang_polis" for="nm_pemegang_polis">Nama Pemegang Polis</label>                            <div class="col-sm-8">
                                 <input type="text"  class="form-control" id="nm_pemegang_polis" name="nm_pemegang_polis">
                             </div>
                         </div>
@@ -426,7 +435,7 @@
         <div class="block block-rounded" id="policy_information_reliance" style="display:none;">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
-                    POLICY INFORMATION (RELIANCE INDONESIA)
+                    PARTICIPANT INFORMATION (RELIANCE INDONESIA)
                 </h3>
             </div>
             
@@ -434,88 +443,45 @@
                 <div class="row">
                     <div class="col-lg-12 space-y-3">
                         <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">No Polis</label>
+                            <label class="col-sm-4 col-form-label" for="nama_peserta">Nama Peserta</label>
                             <div class="col-sm-8">
-                                <input type="text"  class="form-control" readonly>
+                                <input type="text" value="{{ $item->nama_peserta }}" class="form-control" id="nama_peserta" name="nama_peserta">
+                            </div>
+                        </div>
+                         <div class="row">
+                            <label class="col-sm-4 col-form-label" for="nomor_peserta">Nomor Peserta</label>
+                            <div class="col-sm-8">
+                                <input type="text" value="{{ $item->nomor_peserta }}" class="form-control" id="nomor_peserta" name="nomor_peserta">
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Nama Tertanggung</label>
+                            <label class="col-sm-4 col-form-label" for="tgl_mulai">Tanggal terbit/Tgl Mulai</label>
                             <div class="col-sm-8">
-                                <input type="text"  class="form-control" readonly>
+                                <input type="text" value="{{ $item->tgl_mulai }}" class="js-flatpickr form-control" id="tgl_mulai" name="tgl_mulai" placeholder="Y-m-d">
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Nama Pemegang Polis</label>
+                            <label class="col-sm-4 col-form-label" for="tgl_pengajuan">SPAJ/Tgl Pengajuan</label>
                             <div class="col-sm-8">
-                                <input type="text"  class="form-control" readonly>
+                                <input type="text" value="{{ $item->tgl_pengajuan }}" class="js-flatpickr form-control" id="tgl_pengajuan" name="tgl_pengajuan" placeholder="Y-m-d">
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Nama Agen</label>
+                            <label class="col-sm-4 col-form-label" for="tgl_selesai">Tgl Selesai</label>
                             <div class="col-sm-8">
-                                <input type="text"  class="form-control" readonly>
+                                <input type="text" value="{{ $item->tgl_selesai }}" class="js-flatpickr form-control" id="tgl_selesai" name="tgl_selesai" placeholder="Y-m-d">
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Tgl. SPAJ</label>
+                            <label class="col-sm-4 col-form-label" for="tgl_klaim">Tanggal Klaim</label>
                             <div class="col-sm-8">
-                                <input type="text" class="js-flatpickr form-control" readonly>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-password">Efektif Polis</label>
-                            <div class="col-sm-8">
-                            <input type="text" class="js-flatpickr form-control" readonly>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Usia Polis</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" readonly>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Pekerjaan</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" readonly>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-matauang">Mata Uang</label>
-                            <div class="col-sm-8">
-                                <select class="form-select" readonly>
-                                    <option value="">--pilih mata uang--</option>
-                                    @foreach ($matauang as $uang)
-                                    <option value="{{$uang->matauang}}">{{$uang->matauang}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Premi</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" readonly>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Total Premi</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" readonly>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Uang pertanggungan</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" readonly>
+                                <input type="text" value="{{ $item->tgl_klaim }}" class="js-flatpickr form-control" id="tgl_klaim" name="tgl_klaim" placeholder="Y-m-d">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- END POLICY INFORMATION RELIANCE INDONESIA -->
 
         <div class="block block-rounded">
             <div class="block-header block-header-default">
