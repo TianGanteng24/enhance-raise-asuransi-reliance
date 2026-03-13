@@ -396,7 +396,53 @@
               @endif
             </table>
           </td>
-            
+
+          @if($detail->nm_perusahaan == 'PT. ASURANSI RELIANCE INDONESIA')
+<td style="padding-left:20px;">
+    <h5><u> INFORMASI PESERTA RELIANCE </u></h5>
+    <table style="font-size:14px;">
+        @if (!is_null($detail->nama_peserta))
+        <tr>
+            <td>Nama Peserta</td>
+            <td> : </td>
+            <td>{{$detail->nama_peserta}}</td>
+        </tr>
+        @endif
+
+        @if (!is_null($detail->nomor_peserta))
+        <tr>
+            <td>Nomor Peserta</td>
+            <td> : </td>
+            <td>{{$detail->nomor_peserta}}</td>
+        </tr>
+        @endif
+
+        @if (!is_null($detail->tgl_mulai))
+        <tr>
+            <td>Tanggal Mulai</td>
+            <td> : </td>
+            <td>{{ Carbon\carbon::parse($detail->tgl_mulai)->isoFormat('D MMM Y') }}</td>
+        </tr>
+        @endif
+
+        @if (!is_null($detail->tgl_selesai))
+        <tr>
+            <td>Tanggal Selesai</td>
+            <td> : </td>
+            <td>{{ Carbon\carbon::parse($detail->tgl_selesai)->isoFormat('D MMM Y') }}</td>
+        </tr>
+        @endif
+
+        @if (!is_null($detail->tgl_klaim))
+        <tr>
+            <td>Tanggal Klaim</td>
+            <td> : </td>
+            <td>{{ Carbon\carbon::parse($detail->tgl_klaim)->isoFormat('D MMM Y') }}</td>
+        </tr>
+        @endif
+    </table>
+</td>
+@endif
           <td style="padding-left:20px;">
             <h5><u> INFORMASI KLAIM </u></h5>
             <table style="font-size:14px;">

@@ -191,8 +191,64 @@
                   </table>
                 </td>
               </tr>
-            </table>
-  {{-- Informasi Polis --}}
+            {{-- Letakkan ini di file generate_report_sementara.blade.php --}}
+{{-- Tepat di bawah penutup </table> milik INFORMASI KLAIM (sekitar baris 210) --}}
+
+@if($detail->nm_perusahaan == 'PT. ASURANSI RELIANCE INDONESIA')
+    <hr> {{-- Tambahkan garis pembatas tipis agar rapi --}}
+    <h4> INFORMASI PESERTA RELIANCE</h4>
+    <table style="font-size:13px;">
+        <tr valign="top">
+            <td style="padding-right: 20px;">
+                <table>
+                    @if (!is_null($detail->nama_peserta))
+                    <tr>
+                        <td>Nama Peserta</td>
+                        <td style="padding-left: 35px;"> : </td>
+                        <td>{{$detail->nama_peserta}}</td>
+                    </tr>
+                    @endif
+                    
+                    @if (!is_null($detail->nomor_peserta))
+                    <tr>
+                        <td>Nomor Peserta</td>
+                        <td style="padding-left: 35px;"> : </td>
+                        <td>{{$detail->nomor_peserta}}</td>
+                    </tr>
+                    @endif
+                </table>
+            </td>
+            <td>
+                <table style="padding-left: 40px;">
+                    @if (!is_null($detail->tgl_mulai))
+                    <tr>
+                        <td>Tanggal Mulai</td>
+                        <td style="padding-left: 15px;"> : </td>
+                        <td>{{ Carbon\carbon::parse($detail->tgl_mulai)->isoFormat('D MMM Y') }}</td>
+                    </tr>
+                    @endif
+
+                    @if (!is_null($detail->tgl_selesai))
+                    <tr>
+                        <td>Tanggal Selesai</td>
+                        <td style="padding-left: 15px;"> : </td>
+                        <td>{{ Carbon\carbon::parse($detail->tgl_selesai)->isoFormat('D MMM Y') }}</td>
+                    </tr>
+                    @endif
+
+                    @if (!is_null($detail->tgl_klaim))
+                    <tr>
+                        <td>Tanggal Klaim</td>
+                        <td style="padding-left: 15px;"> : </td>
+                        <td>{{ Carbon\carbon::parse($detail->tgl_klaim)->isoFormat('D MMM Y') }}</td>
+                    </tr>
+                    @endif
+                </table>
+            </td>
+        </tr>
+    </table>
+@endif
+
   {{-- informasi Klaim --}}
             <h4> INFORMASI KLAIM</h4>
             <table style="font-size:13px;">

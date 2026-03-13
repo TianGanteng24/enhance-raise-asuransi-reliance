@@ -1091,6 +1091,7 @@
                             </tbody>
                         </table>  
                             
+                        @if (strtolower($detail->nm_perusahaan) == strtolower('PT. ASURANSI RELIANCE INDONESIA'))
                         <table class="table table-bordered table-striped table-vcenter">
                             <thead>
                                 <tr>
@@ -1099,26 +1100,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="fw fs-sm">Nama peserta</td>
-                                    <td class="fw fs-sm">{{$detail->nama_peserta}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw fs-sm">nomor peserta</td>
-                                    <td class="fw fs-sm">{{$detail->nomor_peserta}}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw fs-sm">Tanggal Mulai</td>
-                                    <td class="fw fs-sm">{{ Carbon\carbon::parse($detail->tgl_mulai)->isoFormat('D MMM Y') }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw fs-sm">Tanggal Selesai</td>
-                                    <td class="fw fs-sm">{{ Carbon\carbon::parse($detail->tgl_selesai)->isoFormat('D MMM Y') }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="fw fs-sm">Tanggal Klaim</td>
-                                    <td class="fw fs-sm">{{ Carbon\carbon::parse($detail->tgl_klaim)->isoFormat('D MMM Y') }}</td>
-                                </tr>
+                                    <tr>
+                                        <td class="fw fs-sm">Nama peserta</td>
+                                        <td class="fw fs-sm">{{$detail->nama_peserta}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw fs-sm">nomor peserta</td>
+                                        <td class="fw fs-sm">{{$detail->nomor_peserta}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw fs-sm">Tanggal Mulai</td>
+                                        <td class="fw fs-sm">{{ Carbon\carbon::parse($detail->tgl_mulai)->isoFormat('D MMM Y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw fs-sm">Tanggal Selesai</td>
+                                        <td class="fw fs-sm">{{ Carbon\carbon::parse($detail->tgl_selesai)->isoFormat('D MMM Y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw fs-sm">Tanggal Klaim</td>
+                                        <td class="fw fs-sm">{{ Carbon\carbon::parse($detail->tgl_klaim)->isoFormat('D MMM Y') }}</td>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                     
