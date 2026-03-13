@@ -436,55 +436,55 @@
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">No Polis</label>
                             <div class="col-sm-8">
-                                <input type="text"  class="form-control" id="no_polis_reliance" name="no_polis_reliance" readonly>
+                                <input type="text"  class="form-control" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Nama Tertanggung</label>
                             <div class="col-sm-8">
-                                <input type="text"  class="form-control" id="nm_tertanggung_reliance" name="nm_tertanggung_reliance" readonly>
+                                <input type="text"  class="form-control" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Nama Pemegang Polis</label>
                             <div class="col-sm-8">
-                                <input type="text"  class="form-control" id="nm_pemegang_polis_reliance" name="nm_pemegang_polis_reliance" readonly>
+                                <input type="text"  class="form-control" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Nama Agen</label>
                             <div class="col-sm-8">
-                                <input type="text"  class="form-control" id="nm_agen_reliance" name="nm_agen_reliance" readonly>
+                                <input type="text"  class="form-control" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Tgl. SPAJ</label>
                             <div class="col-sm-8">
-                                <input type="text" class="js-flatpickr form-control" id="tgl_spaj_reliance" name="tgl_spaj_reliance" placeholder="Y-m-d" readonly>
+                                <input type="text" class="js-flatpickr form-control" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-password">Efektif Polis</label>
                             <div class="col-sm-8">
-                            <input type="text" class="js-flatpickr form-control" id="tgl_efektif_polis_reliance" name="tgl_efektif_polis_reliance" placeholder="Y-m-d" readonly>
+                            <input type="text" class="js-flatpickr form-control" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Usia Polis</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="usia_polis_reliance" name="usia_polis_reliance" readonly>
+                                <input type="text" class="form-control" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Pekerjaan</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="pekerjaan_reliance" name="pekerjaan_reliance" readonly>
+                                <input type="text" class="form-control" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-matauang">Mata Uang</label>
                             <div class="col-sm-8">
-                                <select class="form-select"  id="matauang_reliance" name="matauang_reliance" readonly>
+                                <select class="form-select" readonly>
                                     <option value="">--pilih mata uang--</option>
                                     @foreach ($matauang as $uang)
                                     <option value="{{$uang->matauang}}">{{$uang->matauang}}</option>
@@ -495,20 +495,20 @@
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Premi</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="premi_reliance" name="premi_reliance" readonly>
+                                <input type="number" class="form-control" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Total Premi</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="total_premi_reliance" name="total_premi_reliance" readonly>
+                                <input type="number" class="form-control" readonly>
                             </div>
                         </div>
                         
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Uang pertanggungan</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="uang_pertanggungan_reliance" name="uang_pertanggungan_reliance" readonly>
+                                <input type="number" class="form-control" readonly>
                             </div>
                         </div>
                     </div>
@@ -516,7 +516,6 @@
             </div>
         </div>
         <!-- END POLICY INFORMATION RELIANCE INDONESIA -->
-
 
         <div class="block block-rounded">
             <div class="block-header block-header-default">
