@@ -58,6 +58,37 @@
   </style>
 </head>
 <body>
+@php
+function base64_image($relativePath){
+    $candidates = [
+        base_path('public/'.$relativePath),
+        base_path($relativePath),
+        storage_path('app/public/'.$relativePath),
+        base_path('storage/app/public/'.$relativePath),
+    ];
+    $file = null;
+    foreach ($candidates as $path) {
+        if (file_exists($path)) {
+            $file = $path;
+            break;
+        }
+    }
+    if (!$file) {
+        return '';
+    }
+    $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+    $mimeMap = [
+        'png' => 'image/png',
+        'jpg' => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'gif' => 'image/gif',
+        'svg' => 'image/svg+xml',
+        'webp' => 'image/webp',
+    ];
+    $mime = $mimeMap[$ext] ?? 'application/octet-stream';
+    return 'data:'.$mime.';base64,'.base64_encode(file_get_contents($file));
+}
+@endphp
 
   <div class="border-solid" style="font-family: Arial, Helvetica, sans-serif;">
     <table >
@@ -68,7 +99,7 @@
               
               <tr valign="top">
                 <td width="150px">
-                  <img src="{{ asset('lib_report/logo_head.png') }}">
+                  <img src="{{ base64_image('lib_report/logo_head.png') }}">
                 </td>
                 <td align="center" style="padding-top:15px;">
                   <h2> LAPORAN INVESTIGASI SEMENTARA </h2>
