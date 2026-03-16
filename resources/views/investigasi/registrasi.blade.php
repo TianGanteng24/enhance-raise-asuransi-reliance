@@ -331,11 +331,11 @@
                             </div>
                         </div>
                         <div class="row">
-<label class="col-sm-4 col-form-label" id="label_pemegang_polis" for="nm_pemegang_polis">Nama Pemegang Polis</label>                            <div class="col-sm-8">
+<label class="col-sm-4 col-form-label" id="label_pemegang_polis" for="nm_pemegang_polis">Nama Koperasi</label>                            <div class="col-sm-8">
                                 <input type="text"  class="form-control" id="nm_pemegang_polis" name="nm_pemegang_polis">
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Nama Agen</label>
                             <div class="col-sm-8">
                                 <input type="text"  class="form-control" id="nm_agen" name="nm_agen">
@@ -383,14 +383,14 @@
                             <div class="col-sm-8">
                             <input type="text" class="js-flatpickr form-control" id="tgl_efektif_polis" name="tgl_efektif_polis" placeholder="Y-m-d">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Tanggal Joint</label>
                             <div class="col-sm-8">
                                 <input type="text" class="js-flatpickr form-control" id="tgl_joint" name="tgl_joint" placeholder="Y-m-d">
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Usia Polis</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="usia_polis" name="usia_polis">
@@ -431,7 +431,7 @@
                             <div class="col-sm-8">
                                 <input type="number" class="form-control" id="uang_pertanggungan" name="uang_pertanggungan">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

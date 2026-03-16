@@ -330,7 +330,7 @@ function base64_image($relativePath){
                 <td>{{$detail->no_polis}}</td>
               </tr>
               <tr>
-                <td>Nama Pemegang Polis</td>
+                <td>Nama Koperasi</td>
                 <td> : </td>
                 <td>{{$detail->nm_pemegang_polis}}</td>
               </tr>
@@ -339,7 +339,7 @@ function base64_image($relativePath){
                 <td> : </td>
                 <td>{{$detail->nm_tertanggung}}</td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <td>Tanggal Penerbitan</td>
                 <td> : </td>
                 <td>
@@ -350,7 +350,7 @@ function base64_image($relativePath){
                 <td>Uang Pertanggungan</td>
                 <td> : </td>
                 <td>{{$detail->matauang}} @currency($detail->uang_pertanggungan)</td>
-              </tr>
+              </tr> -->
 
               @if (is_null($detail->plan))
               @else
@@ -361,7 +361,7 @@ function base64_image($relativePath){
               </tr>
               @endif
 
-              @if (is_null($detail->tgl_spaj))
+              <!-- @if (is_null($detail->tgl_spaj))
               @else
               <tr>
                 <td>SPAJ</td>
@@ -370,7 +370,7 @@ function base64_image($relativePath){
                   @if (is_null($detail->tgl_spaj)) - @else {{ Carbon\carbon::parse($detail->tgl_spaj)->isoFormat('D MMM Y') }} @endif
                 </td>
               </tr>
-              @endif
+              @endif -->
 
               @if (is_null($detail->tgl_joint))
               @else
@@ -383,7 +383,7 @@ function base64_image($relativePath){
               </tr>
               @endif
 
-              @if (is_null($detail->premi))
+              <!-- @if (is_null($detail->premi))
               @else
               <tr>
                 <td>Premi</td>
@@ -432,7 +432,7 @@ function base64_image($relativePath){
                 <td> : </td>
                 <td>{{$detail->alamat_tertanggung}}</td>
               </tr>
-              @endif
+              @endif -->
             </table>
             @if($detail->nm_perusahaan == 'PT. ASURANSI RELIANCE INDONESIA')
             <h5 style="margin-top: 10px;"><u>INFORMASI PESERTA RELIANCE</u></h5>

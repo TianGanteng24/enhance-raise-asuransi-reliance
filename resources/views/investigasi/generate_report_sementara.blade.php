@@ -138,13 +138,13 @@ function base64_image($relativePath){
                     @if (is_null($detail->nm_pemegang_polis))
                     @else
                     <tr>
-                      <td>Nama Pemegang Polis</td>
+                      <td>Nama Koperasi</td>
                       <td style="padding-left: 10px;"> : </td>
                       <td>{{$detail->nm_pemegang_polis}}</td>
                     </tr>
                     @endif
 
-                    @if (is_null($detail->nm_agen))
+                    <!-- @if (is_null($detail->nm_agen))
                     @else
                     <tr>
                       <td>Nama Agen</td>
@@ -171,19 +171,10 @@ function base64_image($relativePath){
                     </tr>
                     @endif
                   </table>
-                </td>
+                </td> -->
                 
                 <td style="padding-left:80px;">
-                  <table style="font-size:13px;">
-                    @if (is_null($detail->tgl_spaj))
-                    @else
-                    <tr>
-                      <td>SPAJ</td>
-                      <td> : </td>
-                      <td>
-                      @if(is_null($detail->tgl_spaj)) - @else {{ Carbon\carbon::parse($detail->tgl_spaj)->isoFormat('D MMM Y') }} @endif</td>
-                    </tr>
-                    @endif
+                    <table style="font-size:13px;">
 
                     @if (is_null($detail->tgl_joint))
                     @else
@@ -194,7 +185,7 @@ function base64_image($relativePath){
                     </tr>
                     @endif
 
-                    @if (is_null($detail->total_premi))
+                    <!-- @if (is_null($detail->total_premi))
                     @else
                     <tr>
                       <td>Total Premi</td>
@@ -228,7 +219,7 @@ function base64_image($relativePath){
                       <td> : </td>
                       <td>{{$detail->alamat_tertanggung}}</td>
                     </tr>
-                    @endif
+                    @endif -->
                   </table>
                 </td>
               </tr>

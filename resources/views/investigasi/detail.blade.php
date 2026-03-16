@@ -1012,10 +1012,10 @@
                                     <td class="fw fs-sm">Nama Perusahaan</td>
                                     <td class="fw fs-sm">{{$detail->nm_perusahaan}}</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td class="fw fs-sm">Mata Uang</td>
                                     <td class="fw fs-sm">{{$detail->matauang}}</td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td class="fw fs-sm">No Polis</td>
                                     <td class="fw fs-sm">{{$detail->no_polis}}</td>
@@ -1025,10 +1025,10 @@
                                     <td class="fw fs-sm">{{$detail->nm_tertanggung}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw fs-sm">Nama Pemegang Polis</td>
+                                    <td class="fw fs-sm">Nama Koperasi</td>
                                     <td class="fw fs-sm">{{$detail->nm_pemegang_polis}}</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                 <td class="fw fs-sm">Nama Agen</td>
                                 <td class="fw fs-sm">{{$detail->nm_agen}}</td>
                                 </tr>
@@ -1054,7 +1054,7 @@
                                         @else
                                             {{ Carbon\carbon::parse($detail->tgl_efektif_polis)->isoFormat('D MMM Y') }}</td>
                                         @endif    
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <td class="fw fs-sm">Tgl Joint</td>
                                     <td class="fw fs-sm">
@@ -1064,7 +1064,7 @@
                                             {{ Carbon\carbon::parse($detail->tgl_joint)->isoFormat('D MMM Y') }}</td>
                                         @endif    
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                 <td class="fw fs-sm">Usia Polis</td>
                                 <td class="fw fs-sm">{{$detail->usia_polis}}</td>
                                 </tr>
@@ -1096,7 +1096,7 @@
                                 <tr>
                                     <td class="fw fs-sm">Pengaju Klaim</td>
                                     <td class="fw fs-sm">{{$detail->pengaju_klaim}}</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>  
                             

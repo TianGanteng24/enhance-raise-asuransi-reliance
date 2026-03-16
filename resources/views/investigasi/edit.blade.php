@@ -239,12 +239,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-4 col-form-label" for="example-hf-email">Nama Pemegang Polis</label>
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Nama Koperasi</label>
                             <div class="col-sm-8">
                                 <input type="text"  value="{{$detail->nm_pemegang_polis}}" class="form-control" id="nm_pemegang_polis" name="nm_pemegang_polis">
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Nama Agen</label>
                             <div class="col-sm-8">
                                 <input type="text"  value="{{$detail->nm_agen}}" class="form-control" id="nm_agen" name="nm_agen">
@@ -298,14 +298,14 @@
                             <div class="col-sm-8">
                             <input type="text" value="{{$detail->tgl_efektif_polis}}" class="js-flatpickr form-control" id="tgl_efektif_polis" name="tgl_efektif_polis" placeholder="Y-m-d">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Tanggal Joint</label>
                             <div class="col-sm-8">
                                 <input type="text" value="{{$detail->tgl_joint}}" class="js-flatpickr form-control" id="tgl_joint" name="tgl_joint" placeholder="Y-m-d">
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Usia Polis</label>
                             <div class="col-sm-8">
                                 <input type="text" value="{{$detail->usia_polis}}" class="form-control" id="usia_polis" name="usia_polis">
@@ -346,7 +346,7 @@
                             <div class="col-sm-8">
                                 <input type="number" value="{{$detail->uang_pertanggungan}}" class="form-control" id="uang_pertanggungan" name="uang_pertanggungan">
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
