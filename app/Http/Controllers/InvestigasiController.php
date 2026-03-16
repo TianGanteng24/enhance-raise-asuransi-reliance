@@ -471,6 +471,7 @@ class InvestigasiController extends Controller
         $investigasi->alamat_tertanggung=$request->alamat_tertanggung;
         $investigasi->tgl_spaj=$request->tgl_spaj;
         $investigasi->tgl_efektif_polis=$request->tgl_efektif_polis;
+        $investigasi->tgl_joint=$request->tgl_joint;
         $investigasi->usia_polis=$request->usia_polis;
         $investigasi->pekerjaan=$request->pekerjaan;
         $investigasi->matauang=$request->matauang;

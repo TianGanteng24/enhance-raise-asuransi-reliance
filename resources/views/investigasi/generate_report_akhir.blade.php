@@ -88,6 +88,37 @@
 </head>
 
 <body>
+@php
+function base64_image($relativePath){
+    $candidates = [
+        base_path('public/'.$relativePath),
+        base_path($relativePath),
+        storage_path('app/public/'.$relativePath),
+        base_path('storage/app/public/'.$relativePath),
+    ];
+    $file = null;
+    foreach ($candidates as $path) {
+        if (file_exists($path)) {
+            $file = $path;
+            break;
+        }
+    }
+    if (!$file) {
+        return '';
+    }
+    $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+    $mimeMap = [
+        'png' => 'image/png',
+        'jpg' => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'gif' => 'image/gif',
+        'svg' => 'image/svg+xml',
+        'webp' => 'image/webp',
+    ];
+    $mime = $mimeMap[$ext] ?? 'application/octet-stream';
+    return 'data:'.$mime.';base64,'.base64_encode(file_get_contents($file));
+}
+@endphp
 
   <div style="margin-bottom: 100px; font-family: Arial, Helvetica, sans-serif;">
   <table style="margin-top: 90px">
@@ -96,7 +127,7 @@
         <H1>LAPORAN HASIL INVESTIGASI</H1>
       </td>
       <td>
-        <img src="{{ asset('lib_report/logo.png') }}" >
+        <img src="{{ base64_image('lib_report/logo.png') }}" >
       </td>
     </tr>
   </table>
@@ -104,7 +135,7 @@
 
   <div style="margin-left: -70px; margin-top: 30px; 
       background-color: #4379aa;width: 900px; height: 250px" >
-      <table align="center" style="color: #ffffff; font-size: 21px; font-display: ">
+      <table align="center" style="color: #ffffff; font-size: 21px;">
         <tr align="center">
           <td>
             <h2 style="color: #ffffff;">{{$detail->nm_perusahaan}}</h2>
@@ -133,7 +164,7 @@
         <p style="font-size: 38px; font-weight: bold; margin-left:90px;"> External <br> Investigation </p> 
       </td>
       <td> 
-        <img style="margin-left:25px;" src="{{ asset('lib_report/pic_1.png') }}" >
+        <img style="margin-left:25px;" src="{{ base64_image('lib_report/pic_1.png') }}" >
       </td>
     </tr>
   </table>
@@ -143,50 +174,47 @@
 
   {{-- star Kata Pengantar --}}
   <div class="page" style="margin-left: 40px; margin-right: 30px; font-family: Arial, Helvetica, sans-serif;">
-  <h2 style="text-align:center;">KATA PENGANTAR</h2>
-  <div class="border-dot">
-  <table style="padding:5px 15px 15px 5px">
-    <tr>
-      <td align ="" style="width: 150px;text-align: justify;">
-        Kami mengucapkan terima kasih atas kepercayaan yang telah diberikan oleh <b> {{$detail->nm_perusahaan}} </b>
-        kepada PT Deswa Invisco Multitama  (DIM) untuk melakukan  investigasi atas  
-        klaim &#45; klaim asuransi yang terjadi, bersama dengan ini pula secara 
-        khusus kami menyampaikan laporan akhir hasil investigasi atas klaim 
-        <b> No. Polis {{$detail->no_polis}} atas nama {{$detail->nm_tertanggung}} </b>untuk dapat diterima dengan baik, 
-        perlu kami sampaikan bahwa proses investigasi <b> kami lakukan 
-        dalam periode @if (is_null($detail->tgl_registrasi)) - @else {{ Carbon\carbon::parse($detail->tgl_registrasi)->isoFormat('D MMM Y') }} @endif 
-        sd. @if (is_null($detail->tgl_kirim_dokumen)) @else {{ Carbon\carbon::parse($detail->tgl_kirim_dokumen)->isoFormat('D MMM Y') }} @endif</b>, 
-        {{$detail->tambahan_waktu}}. 
-        <br><br>
-        Perlu kami sampaikan bahwa Investigasi kasus ini <b> melingkupi wilayah {{$detail->area_investigasi}} </b> untuk mencari dan mendapatkan informasi serta data yang berkaitan dengan Nasabah. 
-        Secara lebih lengkap mengenai perjalanan  proses investigasi, temuan dilapangan, 
-        kesimpulan hasil investigasi serta rekomendasi keputusan klaim dapat di lihat pada laporan akhir 
-        investigasi ini. 
-        <br><br>
-        Kami berharap agar laporan akhir investigasi ini bisa menjadi dasar serta acuan dalam pengambilan 
-        keputusan akhir klaim tersebut. 
-        <br><br>	 
-        Jika ada informasi atau hal &#45; hal dalam laporan ini yang  masih perlu untuk dimintakan penjelasan 
-        lebih lanjut kami akan dengan senang hati membantu.  
-        <br><br>
-        Demikian informasi ini kami sampaikan, kami berharap  semoga kerjasama yang terjalin dengan 
-        baik selama ini akan terus dapat kita tingkatkan kedepan.
-        <br><br>
-        Salam,
-        <br><br>
-        Jakarta, @if (is_null($detail->tgl_kirim_dokumen)) @else {{ Carbon\carbon::parse($detail->tgl_kirim_dokumen)->isoFormat('D MMM Y') }} @endif
-        <br>
-        <b>Management PT Deswa Invisco Multitama (DIM)</b> 
-        <br><br>
-        <img src="{{ asset('lib_report/ttd.png') }}" alt="">          
-        <br>
-        <?php echo str_repeat("&nbsp;",14);?><b><u>Suyadi Wahri</u></b>
-        <br>
-        <?php echo str_repeat("&nbsp;",18);?><b><i>Direktur</i></b>
-      </td>
-    </tr>
-  </table>
-  </div>
+    <h2 style="text-align: center; margin-bottom: 30px;">KATA PENGANTAR</h2>
+    <div class="border-dot" style="padding: 20px; line-height: 1.8;">
+      
+      <p style="text-align: justify; margin-bottom: 7px;">
+        Kami mengucapkan terima kasih atas kepercayaan yang telah diberikan oleh <b>{{$detail->nm_perusahaan}}</b> kepada PT Deswa Invisco Multitama (DIM) untuk melakukan investigasi atas klaim-klaim asuransi yang terjadi. Bersama dengan ini pula secara khusus kami menyampaikan laporan akhir hasil investigasi atas klaim <b>No. Polis {{$detail->no_polis}} atas nama {{$detail->nm_tertanggung}}</b>.
+      </p>
+
+      <p style="text-align: justify; margin-bottom: 7px;">
+        Perlu kami sampaikan bahwa proses investigasi kami lakukan dalam periode <b>@if (is_null($detail->tgl_registrasi)) - @else {{ Carbon\carbon::parse($detail->tgl_registrasi)->isoFormat('D MMM Y') }} @endif s/d. @if (is_null($detail->tgl_kirim_dokumen)) - @else {{ Carbon\carbon::parse($detail->tgl_kirim_dokumen)->isoFormat('D MMM Y') }} @endif</b>, {{$detail->tambahan_waktu}}.
+      </p>
+
+      <p style="text-align: justify; margin-bottom: 7px;">
+        Perlu kami sampaikan bahwa Investigasi kasus ini melingkupi wilayah <b>{{$detail->area_investigasi}}</b> untuk mencari dan mendapatkan informasi serta data yang berkaitan dengan Nasabah. Secara lebih lengkap mengenai perjalanan proses investigasi, temuan di lapangan, kesimpulan hasil investigasi serta rekomendasi keputusan klaim dapat dilihat pada laporan akhir investigasi ini.
+      </p>
+
+      <p style="text-align: justify; margin-bottom: 7px;">
+        Kami berharap agar laporan akhir investigasi ini bisa menjadi dasar serta acuan dalam pengambilan keputusan akhir klaim tersebut.
+      </p>
+
+      <p style="text-align: justify; margin-bottom: 7px;">
+        Jika ada informasi atau hal-hal dalam laporan ini yang masih perlu untuk dimintakan penjelasan lebih lanjut, kami akan dengan senang hati membantu.
+      </p>
+
+      <p style="text-align: justify; margin-bottom: 15px;">
+        Demikian informasi ini kami sampaikan. Kami berharap semoga kerjasama yang terjalin dengan baik selama ini akan terus dapat kita tingkatkan kedepan.
+      </p>
+
+      <div style="margin-top: 25px;">
+        <p style="margin: 0; margin-bottom: 10px;">Salam,</p>
+
+        <p style="margin: 0; margin-bottom: 30px;">Jakarta, @if (is_null($detail->tgl_kirim_dokumen)) - @else {{ Carbon\carbon::parse($detail->tgl_kirim_dokumen)->isoFormat('D MMM Y') }} @endif</p>
+
+        <p style="margin: 0; margin-bottom: 15px;"><b>Management PT Deswa Invisco Multitama (DIM)</b></p>
+
+        <img src="{{ base64_image('lib_report/ttd.png') }}" alt="Tanda Tangan" style="max-width: 120px; height: auto; margin-bottom: 5px;">
+
+        <p style="margin: 0; margin-bottom: 2px;"><b><u>Suyadi Wahri</u></b></p>
+        <p style="margin: 0;"><b><i>Direktur</i></b></p>
+      </div>
+
+    </div>
   </div>
   {{-- End Page Kata pengantar --}}
 
@@ -195,7 +223,7 @@
   <table style="margin-left: 25px;">
     <tr>
       <td>
-        <img src="{{ asset('lib_report/logo_head.png') }}" alt="">
+        <img src="{{ base64_image('lib_report/logo_head.png') }}" alt="">
       </td>
       <td>
         <h2><?php echo str_repeat("&nbsp;",10);?>DAFTAR ISI</h2>
@@ -239,14 +267,14 @@
     <table style="margin-left: 25px;">
       <tr>
         <td>
-          <img src="{{ asset('lib_report/logo_head.png') }}" alt="">
+          <img src="{{ base64_image('lib_report/logo_head.png') }}" alt="">
         </td>
         <td>
           <h2><?php echo str_repeat("&nbsp;",10);?>METODE INVESTIGASI</h2>
         </td>
       </tr>
     </table>
-  <img style="margin-top: 25px;" src="{{ asset('lib_report/metode.png') }}">
+  <!-- <img style="margin-top: 25px;" src="{{ base64_image('lib_report/metode.png') }}"> -->
     <div class="metode" style="margin-top:35px; padding-right:30px; padding-left:30px;">
       <h2>Metode Investigasi</h2>
       <div class="danger">
@@ -281,7 +309,7 @@
     <table style="margin-left: 25px;">
       <tr>
         <td>
-          <img src="{{ asset('lib_report/logo_head.png') }}" alt=""> 
+          <img src="{{ base64_image('lib_report/logo_head.png') }}" alt=""> 
         </td>
         <td >
         <h2 style="text-align: center; margin-left : 50px">INFORMASI POLIS, KLAIM & <br>
@@ -344,6 +372,17 @@
               </tr>
               @endif
 
+              @if (is_null($detail->tgl_joint))
+              @else
+              <tr>
+                <td>Tanggal Joint</td>
+                <td> : </td>
+                <td>
+                  @if (is_null($detail->tgl_joint)) - @else {{ Carbon\carbon::parse($detail->tgl_joint)->isoFormat('D MMM Y') }} @endif
+                </td>
+              </tr>
+              @endif
+
               @if (is_null($detail->premi))
               @else
               <tr>
@@ -396,13 +435,14 @@
               @endif
             </table>
             @if($detail->nm_perusahaan == 'PT. ASURANSI RELIANCE INDONESIA')
-            <h5 style="margin-top: 10px;"><u> INFORMASI PESERTA RELIANCE </u></h5>
-            <table style="font-size:13px; width:100%;">
-              @if(!is_null($detail->nama_peserta))<tr><td>Nama Peserta</td><td> : </td><td>{{$detail->nama_peserta}}</td></tr>@endif
-              @if(!is_null($detail->nomor_peserta))<tr><td>Nomor Peserta</td><td> : </td><td>{{$detail->nomor_peserta}}</td></tr>@endif
-              @if(!is_null($detail->tgl_mulai))<tr><td>Tanggal Mulai</td><td> : </td><td>{{ Carbon\carbon::parse($detail->tgl_mulai)->isoFormat('D MMM Y') }}</td></tr>@endif
-              @if(!is_null($detail->tgl_selesai))<tr><td>Tanggal Selesai</td><td> : </td><td>{{ Carbon\carbon::parse($detail->tgl_selesai)->isoFormat('D MMM Y') }}</td></tr>@endif
-              @if(!is_null($detail->tgl_klaim))<tr><td>Tanggal Klaim</td><td> : </td><td>{{ Carbon\carbon::parse($detail->tgl_klaim)->isoFormat('D MMM Y') }}</td></tr>@endif
+            <h5 style="margin-top: 10px;"><u>INFORMASI PESERTA RELIANCE</u></h5>
+            <table style="font-size: 13px; width: 100%; border-collapse: collapse;">
+              @if(!is_null($detail->nama_peserta))<tr><td style="padding: 3px 0;">Nama Peserta</td><td style="padding: 3px 0;"> : </td><td style="padding: 3px 0;">{{$detail->nama_peserta}}</td></tr>@endif
+              @if(!is_null($detail->nomor_peserta))<tr><td style="padding: 3px 0;">Nomor Peserta</td><td style="padding: 3px 0;"> : </td><td style="padding: 3px 0;">{{$detail->nomor_peserta}}</td></tr>@endif
+              @if(!is_null($detail->tgl_mulai))<tr><td style="padding: 3px 0;">Tanggal Mulai</td><td style="padding: 3px 0;"> : </td><td style="padding: 3px 0;">{{ Carbon\carbon::parse($detail->tgl_mulai)->isoFormat('D MMM Y') }}</td></tr>@endif
+              @if(!is_null($detail->tgl_pengajuan))<tr><td style="padding: 3px 0;">SPAJ/Tanggal Pengajuan</td><td style="padding: 3px 0;"> : </td><td style="padding: 3px 0;">{{ Carbon\carbon::parse($detail->tgl_pengajuan)->isoFormat('D MMM Y') }}</td></tr>@endif
+              @if(!is_null($detail->tgl_selesai))<tr><td style="padding: 3px 0;">Tanggal Selesai</td><td style="padding: 3px 0;"> : </td><td style="padding: 3px 0;">{{ Carbon\carbon::parse($detail->tgl_selesai)->isoFormat('D MMM Y') }}</td></tr>@endif
+              @if(!is_null($detail->tgl_klaim))<tr><td style="padding: 3px 0;">Tanggal Klaim</td><td style="padding: 3px 0;"> : </td><td style="padding: 3px 0;">{{ Carbon\carbon::parse($detail->tgl_klaim)->isoFormat('D MMM Y') }}</td></tr>@endif
             </table>
             @endif
           </td>
@@ -563,7 +603,7 @@
     <table style="margin-left: 25px;">
       <tr>
         <td>
-          <img src="{{ asset('lib_report/logo_head.png') }}" alt=""> 
+          <img src="{{ base64_image('lib_report/logo_head.png') }}" alt=""> 
         </td>
         <td >
         <h2 style="text-align: center; margin-left : 40px">INVESTIGASI LAPANGAN</h2>
@@ -615,7 +655,7 @@
                         
                           
                               <td>
-                                <p><img src="{{ asset('storage/'.$picture) }}" alt="" style="width: 230; height: 170"></p>
+                                <p><img src="{{ base64_image('storage/'.$picture) }}" alt="" style="width: 230; height: 170"></p>
                                 <p style="font-size:10px;" align=center;>{{$res->judul}}</p>
                               
                               </td>
@@ -690,7 +730,7 @@
     <table style="margin-bottom:30px;">
       <tr>
         <td>
-          <img src="{{ asset('lib_report/logo_head.png') }}" alt=""> 
+          <img src="{{ base64_image('lib_report/logo_head.png') }}" alt=""> 
         </td>
         <td >
         <h2 style="text-align: center; margin-left : 30px">KESIMPULAN AKHIR INVESTIGASI</h2>
@@ -699,7 +739,7 @@
     </table>
 
     <?php $no=1; ?>
-    <h4 style="">KESIMPULAN</h4>
+    <h4>KESIMPULAN</h4>
     <div class="border-dot">
       <p style="font-weight: bold;margin-bottom:2px;">
       Berdasarkan investigasi yang telah kami lakukan dan juga telah kami jabarkan secara 
@@ -722,7 +762,7 @@
     <tr>
       <td>
       <div style="page-break-after: auto; font-family: Arial, Helvetica, sans-serif;">
-        <h4 style="">REKOMENDASI KEPUTUSAN KLAIM</h4>
+        <h4>REKOMENDASI KEPUTUSAN KLAIM</h4>
         <?php $no=1; ?>
         <div class="border-dot">
           <p style="font-weight: bold;margin-bottom:3px;">
@@ -769,9 +809,9 @@
           <h2 style="text-align: center; margin-left : 0px;margin-bottom:20px;">LAMPIRAN</h2>
       @foreach ($lampiran as $key)
           <?php $data_img = $key->path;?>
-          <div style="">
+          <div>
             
-            <p><img style="width: 680px; height: 800px;" src="{{ asset('storage/'.$data_img) }}" alt=""></p>
+            <p><img style="width: 680px; height: 800px;" src="{{ base64_image('storage/'.$data_img) }}" alt=""></p>
             <p align="center" style="font-weight: bold;font-style:italic;">{{$key->title}}</p>
           </div>
       @endforeach

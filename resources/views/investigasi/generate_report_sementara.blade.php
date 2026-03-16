@@ -58,6 +58,7 @@
   </style>
 </head>
 <body>
+
   <div class="border-solid" style="font-family: Arial, Helvetica, sans-serif;">
     <table >
       <tr>
@@ -153,6 +154,15 @@
                     </tr>
                     @endif
 
+                    @if (is_null($detail->tgl_joint))
+                    @else
+                    <tr>
+                      <td>Tanggal Joint</td>
+                      <td> : </td>
+                      <td>{{ Carbon\carbon::parse($detail->tgl_joint)->isoFormat('D MMM Y') }}</td>
+                    </tr>
+                    @endif
+
                     @if (is_null($detail->total_premi))
                     @else
                     <tr>
@@ -208,6 +218,13 @@
                 <td>Nomor Peserta</td>
                 <td style="padding-left: 10px;"> : </td>
                 <td>{{$detail->nomor_peserta}}</td>
+              </tr>
+              @endif
+              @if (!is_null($detail->tgl_pengajuan))
+              <tr>
+                <td>Tanggal Pengajuan</td>
+                <td style="padding-left: 10px;"> : </td>
+                <td>{{ Carbon\carbon::parse($detail->tgl_pengajuan)->isoFormat('D MMM Y') }}</td>
               </tr>
               @endif
               @if (!is_null($detail->tgl_mulai))

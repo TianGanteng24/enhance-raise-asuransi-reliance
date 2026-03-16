@@ -300,6 +300,12 @@
                             </div>
                         </div>
                         <div class="row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Tanggal Joint</label>
+                            <div class="col-sm-8">
+                                <input type="text" value="{{$detail->tgl_joint}}" class="js-flatpickr form-control" id="tgl_joint" name="tgl_joint" placeholder="Y-m-d">
+                            </div>
+                        </div>
+                        <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Usia Polis</label>
                             <div class="col-sm-8">
                                 <input type="text" value="{{$detail->usia_polis}}" class="form-control" id="usia_polis" name="usia_polis">

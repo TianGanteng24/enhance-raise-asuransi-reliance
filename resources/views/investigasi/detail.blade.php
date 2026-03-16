@@ -1056,6 +1056,15 @@
                                         @endif    
                                 </tr>
                                 <tr>
+                                    <td class="fw fs-sm">Tgl Joint</td>
+                                    <td class="fw fs-sm">
+                                        @if (is_null($detail->tgl_joint))
+                                            -
+                                        @else
+                                            {{ Carbon\carbon::parse($detail->tgl_joint)->isoFormat('D MMM Y') }}</td>
+                                        @endif    
+                                </tr>
+                                <tr>
                                 <td class="fw fs-sm">Usia Polis</td>
                                 <td class="fw fs-sm">{{$detail->usia_polis}}</td>
                                 </tr>
@@ -1107,6 +1116,10 @@
                                     <tr>
                                         <td class="fw fs-sm">nomor peserta</td>
                                         <td class="fw fs-sm">{{$detail->nomor_peserta}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw fs-sm">SPAJ / Tanggal Pengajuan</td>
+                                        <td class="fw fs-sm">{{ Carbon\carbon::parse($detail->tgl_pengajuan)->isoFormat('D MMM Y') }}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw fs-sm">Tanggal Mulai</td>

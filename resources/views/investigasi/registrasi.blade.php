@@ -385,6 +385,12 @@
                             </div>
                         </div>
                         <div class="row">
+                            <label class="col-sm-4 col-form-label" for="example-hf-email">Tanggal Joint</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="js-flatpickr form-control" id="tgl_joint" name="tgl_joint" placeholder="Y-m-d">
+                            </div>
+                        </div>
+                        <div class="row">
                             <label class="col-sm-4 col-form-label" for="example-hf-email">Usia Polis</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="usia_polis" name="usia_polis">
