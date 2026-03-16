@@ -246,7 +246,7 @@
         </td>
       </tr>
     </table>
-  <!-- <img style="margin-top: 25px;" src="{{ asset('lib_report/metode.png') }}"> -->
+  <img style="margin-top: 25px;" src="{{ asset('lib_report/metode.png') }}">
     <div class="metode" style="margin-top:35px; padding-right:30px; padding-left:30px;">
       <h2>Metode Investigasi</h2>
       <div class="danger">
@@ -395,54 +395,17 @@
               </tr>
               @endif
             </table>
+            @if($detail->nm_perusahaan == 'PT. ASURANSI RELIANCE INDONESIA')
+            <h5 style="margin-top: 10px;"><u> INFORMASI PESERTA RELIANCE </u></h5>
+            <table style="font-size:13px; width:100%;">
+              @if(!is_null($detail->nama_peserta))<tr><td>Nama Peserta</td><td> : </td><td>{{$detail->nama_peserta}}</td></tr>@endif
+              @if(!is_null($detail->nomor_peserta))<tr><td>Nomor Peserta</td><td> : </td><td>{{$detail->nomor_peserta}}</td></tr>@endif
+              @if(!is_null($detail->tgl_mulai))<tr><td>Tanggal Mulai</td><td> : </td><td>{{ Carbon\carbon::parse($detail->tgl_mulai)->isoFormat('D MMM Y') }}</td></tr>@endif
+              @if(!is_null($detail->tgl_selesai))<tr><td>Tanggal Selesai</td><td> : </td><td>{{ Carbon\carbon::parse($detail->tgl_selesai)->isoFormat('D MMM Y') }}</td></tr>@endif
+              @if(!is_null($detail->tgl_klaim))<tr><td>Tanggal Klaim</td><td> : </td><td>{{ Carbon\carbon::parse($detail->tgl_klaim)->isoFormat('D MMM Y') }}</td></tr>@endif
+            </table>
+            @endif
           </td>
-
-          @if($detail->nm_perusahaan == 'PT. ASURANSI RELIANCE INDONESIA')
-<td style="padding-left:20px;">
-    <h5><u> INFORMASI PESERTA RELIANCE </u></h5>
-    <table style="font-size:14px;">
-        @if (!is_null($detail->nama_peserta))
-        <tr>
-            <td>Nama Peserta</td>
-            <td> : </td>
-            <td>{{$detail->nama_peserta}}</td>
-        </tr>
-        @endif
-
-        @if (!is_null($detail->nomor_peserta))
-        <tr>
-            <td>Nomor Peserta</td>
-            <td> : </td>
-            <td>{{$detail->nomor_peserta}}</td>
-        </tr>
-        @endif
-
-        @if (!is_null($detail->tgl_mulai))
-        <tr>
-            <td>Tanggal Mulai</td>
-            <td> : </td>
-            <td>{{ Carbon\carbon::parse($detail->tgl_mulai)->isoFormat('D MMM Y') }}</td>
-        </tr>
-        @endif
-
-        @if (!is_null($detail->tgl_selesai))
-        <tr>
-            <td>Tanggal Selesai</td>
-            <td> : </td>
-            <td>{{ Carbon\carbon::parse($detail->tgl_selesai)->isoFormat('D MMM Y') }}</td>
-        </tr>
-        @endif
-
-        @if (!is_null($detail->tgl_klaim))
-        <tr>
-            <td>Tanggal Klaim</td>
-            <td> : </td>
-            <td>{{ Carbon\carbon::parse($detail->tgl_klaim)->isoFormat('D MMM Y') }}</td>
-        </tr>
-        @endif
-    </table>
-</td>
-@endif
           <td style="padding-left:20px;">
             <h5><u> INFORMASI KLAIM </u></h5>
             <table style="font-size:14px;">
