@@ -93,10 +93,10 @@
             // })
         };
         
-        $('#asuransi_id').change(function(){   
-            generateNo();
-            checkReliance();
-        });
+        // $('#asuransi_id').change(function(){   
+        //     generateNo();
+        //     checkReliance();
+        // });
 
         function checkReliance() {
     // Mengambil teks dari opsi asuransi yang dipilih
@@ -158,74 +158,74 @@
             }
         }
 
-        $('#alamat_provinsi').change(function(){
-        $("#alamat_kabupaten").empty();
-        $("#alamat_kecamatan").empty();
-        var provinsi_id = $(this).val();  
-        console.log(provinsi_id);  
-        if(provinsi_id){
-            $.ajax({
-            type:"GET",
-            url:"{{route('getKabupaten')}}",
-            data : {
-                provinsi_id : provinsi_id
-            },
-            success:function(res){               
-                if(res){
-                    $("#alamat_kabupaten").empty();
-                    $("#alamat_kabupaten").append('<option value="">---pilih kabupaten/kota---</option>');
-                    $.each(res,function(index,kabupaten){
-                        $("#alamat_kabupaten").append('<option value="'+kabupaten.id+'">'+kabupaten.kabupaten+'</option>');
-                    });
-                }else{
-                $("#alamat_kabupaten").empty();
-                }
-            }
-            });
-            }else{
-            
-            }      
-        });
+        // $('#alamat_provinsi').change(function(){
+        // $("#alamat_kabupaten").empty();
+        // $("#alamat_kecamatan").empty();
+        // var provinsi_id = $(this).val();  
+        // console.log(provinsi_id);  
+        // if(provinsi_id){
+        //     $.ajax({
+        //     type:"GET",
+        //     url:"{{route('getKabupaten')}}",
+        //     data : {
+        //         provinsi_id : provinsi_id
+        //     },
+        //     success:function(res){               
+        //         if(res){
+        //             $("#alamat_kabupaten").empty();
+        //             $("#alamat_kabupaten").append('<option value="">---pilih kabupaten/kota---</option>');
+        //             $.each(res,function(index,kabupaten){
+        //                 $("#alamat_kabupaten").append('<option value="'+kabupaten.id+'">'+kabupaten.kabupaten+'</option>');
+        //             });
+        //         }else{
+        //         $("#alamat_kabupaten").empty();
+        //         }
+        //     }
+        //     });
+        //     }else{
+        //     
+        //     }      
+        // });
 
-        $('#alamat_kabupaten').change(function(){
-            $("#alamat_kecamatan").empty();
-        var kabupaten_id = $(this).val();  
-        console.log(kabupaten_id);  
-        if(kabupaten_id){
-            $.ajax({
-            type:"GET",
-            url:"{{route('getKecamatan')}}",
-            data : {
-                kabupaten_id : kabupaten_id
-            },
-            success:function(res){               
-                if(res){
-                    $("#alamat_kecamatan").empty();
-                    $("#alamat_kecamatan").append('<option value="">---pilih kabupaten/kota---</option>');
-                    $.each(res,function(index,kecamatan){
-                        $("#alamat_kecamatan").append('<option value="'+kecamatan.id+'">'+kecamatan.kecamatan+'</option>');
-                    });
-                }else{
-                $("#alamat_kecamatan").empty();
-                }
-            }
-            });
-            }else{
-            
-            }      
-        });
+        // $('#alamat_kabupaten').change(function(){
+        //     $("#alamat_kecamatan").empty();
+        // var kabupaten_id = $(this).val();  
+        // console.log(kabupaten_id);  
+        // if(kabupaten_id){
+        //     $.ajax({
+        //     type:"GET",
+        //     url:"{{route('getKecamatan')}}",
+        //     data : {
+        //         kabupaten_id : kabupaten_id
+        //     },
+        //     success:function(res){               
+        //         if(res){
+        //             $("#alamat_kecamatan").empty();
+        //             $("#alamat_kecamatan").append('<option value="">---pilih kabupaten/kota---</option>');
+        //             $.each(res,function(index,kecamatan){
+        //                 $("#alamat_kecamatan").append('<option value="'+kecamatan.id+'">'+kecamatan.kecamatan+'</option>');
+        //             });
+        //         }else{
+        //         $("#alamat_kecamatan").empty();
+        //         }
+        //     }
+        //     });
+        //     }else{
+        //     
+        //     }      
+        // });
 
-        $('#asuransi_id').on('change', function() {
-    var selectedValue = $(this).val();
-    var selectedText = $('#asuransi_id option:selected').text();
+        // $('#asuransi_id').on('change', function() {
+    // var selectedValue = $(this).val();
+    // var selectedText = $('#asuransi_id option:selected').text();
 
-    // Pastikan ID selector sesuai dengan ID yang ditambahkan di label
-    if (selectedValue === '37' || selectedText.includes('RELIANCE')) {
-        $('#label_pemegang_polis').text('Nama Pemegang Polis / Koperasi');
-    } else {
-        $('#label_pemegang_polis').text('Nama Pemegang Polis');
-    }
-});
+    // // Pastikan ID selector sesuai dengan ID yang ditambahkan di label
+    // if (selectedValue === '37' || selectedText.includes('RELIANCE')) {
+    //     $('#label_pemegang_polis').text('Nama Pemegang Polis / Koperasi');
+    // } else {
+    //     $('#label_pemegang_polis').text('Nama Pemegang Polis');
+    // }
+// });
     </script>
     <script src="{{ asset('js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
     <script src="{{ asset('js/pages/be_forms_validation.min.js')}}"></script>
@@ -281,11 +281,7 @@
                             <label class="col-sm-4 col-form-label" for="nm_perusahaan">Nama Perusahaan</label>
                             <div class="col-sm-8">
                                 <select class="form-select {{ $errors->has('asuransi_id') ? 'is-invalid' : ''}}"  id="asuransi_id" name="asuransi_id">
-                                    <option selected=""></option>
-                                    @foreach ($asuransi as $item)
-                                    <option value="{{$item->id}}" data-kd_value="{{$item->kd_perusahaan}}">{{$item->kd_perusahaan}} - {{$item->nm_perusahaan}}</option>
-                                    @endforeach
-                                    
+                                    <option value="37" data-kd_value="REI" selected>REI - PT ASURANSI RELIANCE INDONESIA</option>
                                 </select>
                                 @if ($errors->has('asuransi_id'))
                                     <div class="invalid-feedback">
@@ -298,7 +294,7 @@
                             <span id="form_result"></span>
                             <label class="col-sm-4 col-form-label" for="example-hf-email">No Case<span class="text-danger">*</span></label>
                             <div class="col-sm-8">
-                                <input readonly value="{{ old('no_case') }}" type="text" class="form-control" id="no_case" name="no_case">
+                                <input readonly value="REI/{{ date('m') }}.{{ date('Y') }}/" type="text" class="form-control" name="no_case">
                             </div>
                         </div>
                         <div class="row">
