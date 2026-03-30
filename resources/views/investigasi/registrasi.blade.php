@@ -268,7 +268,7 @@
         <form action="{{ route('investigasi.store') }}"  method="post" enctype="multipart/form-data">
         @csrf
         <div class="block block-rounded">
-            <div class="block-header block-header-default">
+            <div class="block-header block-header-default">B
                 <h3 class="block-title">
                     POLICY INFORMATION
                 </h3>
@@ -434,7 +434,7 @@
         </div>
 
         <!-- POLICY INFORMATION RELIANCE INDONESIA -->
-        <div class="block block-rounded" id="policy_information_reliance" style="display:none;">
+        <div class="block block-rounded" id="policy_information_reliance"">
             <div class="block-header block-header-default">
                 <h3 class="block-title">
                     PARTICIPANT INFORMATION (RELIANCE INDONESIA)
