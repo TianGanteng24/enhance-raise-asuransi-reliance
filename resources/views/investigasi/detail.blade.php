@@ -1100,7 +1100,7 @@
                             </tbody>
                         </table>  
                             
-                        @if (strtolower($detail->nm_perusahaan) == strtolower('PT. ASURANSI RELIANCE INDONESIA'))
+                        @if (strtolower($detail->nm_perusahaan) == strtolower('PT. ASURANSI JIWA RELIANCE INDONESIA'))
                         <table class="table table-bordered table-striped table-vcenter">
                             <thead>
                                 <tr>
